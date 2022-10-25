@@ -29,7 +29,7 @@ spec:
 # The name of the container is specified below
         - name: stedi-aya
 # The image is a prebuilt file containing the operating system
-          image: ayane822/stedi-api_nginx_aya
+          image: gcr.io/group-project-cloud-account/stedi-aya
 # The ports is a list of tcp ports the pod listens on
           ports:
 # The container port is a specific port the pod listens on
