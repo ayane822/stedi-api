@@ -104,7 +104,7 @@ metadata:
   name: stedi-nodeport-aya
 spec:
   selector:
-    app: stedi
+    app: stedi-aya
   type: NodePort
   ports:
     - protocol: TCP
