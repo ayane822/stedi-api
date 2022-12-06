@@ -6,7 +6,7 @@ kind: Deployment
 # Metadata is information related to the object we created in Kubernetes
 metadata:
 # The name here is the name of our deployment
-  name: stedi-aya
+  name: stedi-aya-production
 spec:
 # Replicas refers to the number of pods we deploy
   replicas: 1
@@ -15,19 +15,19 @@ spec:
 # Matchlabels are a label for my selector
     matchLabels:
 # App is a specific kind of label for my pod
-      app: stedi-aya
+      app: stedi-aya-production
 # The Template describes all the features of my pod
   template:
 # Metadata provides labels for my template
     metadata:
       labels:
-        app: stedi-aya
+        app: stedi-aya-production
 # The spec refers to the specification of my containers in my pod
     spec:
 # Containers can have one or more docker containers in the pod
       containers:
 # The name of the container is specified below
-        - name: stedi-aya
+        - name: stedi-aya-production
 # The image is a prebuilt file containing the operating system
           image: gcr.io/group-project-cloud-account/stedi-aya
           env:
@@ -37,7 +37,7 @@ spec:
                   name: redis-secrets-dev-aya
                   key: REDIS_PASS
             - name: REDIS_HOST
-              value: "redis-stedi-dev-aya"
+              value: "redis-stedi-dev-aya-production"
             - name: REDIS_PORT
               value: "6379"
             - name: REDIS_DB
@@ -103,7 +103,7 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: stedi-certificate-aya
+  name: stedi-certificate-aya-production
 spec:
   domains:
     - ayakurokawastedi.cit262.com
@@ -113,34 +113,31 @@ apiVersion: v1
 kind: Service
 metadata:
 #same1
-  name: stedi-nodeport-aya
+  name: stedi-nodeport-aya-production
 spec:
   selector:
-    app: stedi-aya
+    app: stedi-aya-production
   type: NodePort
   ports:
     - protocol: TCP
       port: 80
       targetPort: 4567
 
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: stedi-ingress-aya
-  annotations:
-    kubernetes.io/ingress.global-static-ip-name: stedi-public-aya
-    networking.gke.io/managed-certificates: stedi-certificate-aya
-    kubernetes.io/ingress.allow-http: "false"
-    #the below line was not there before
-    kubernetes.io/ingress.class: "gce"
-spec:
-  defaultBackend:
-    service:
-# this name must match your node port  same1
-      name: stedi-nodeport-aya-production
-      port:
-        number: 80
-
-
-
+# ---
+# # apiVersion: networking.k8s.io/v1
+# # kind: Ingress
+# # metadata:
+# #   name: stedi-ingress-aya-production
+# #   annotations:
+# #     kubernetes.io/ingress.global-static-ip-name: stedi-public-aya-production
+# #     networking.gke.io/managed-certificates: stedi-certificate-aya-production
+# #     kubernetes.io/ingress.allow-http: "false"
+# #     #the below line was not there before
+# #     kubernetes.io/ingress.class: "gce"
+# spec:
+#   defaultBackend:
+#     service:
+# # this name must match your node port  same1
+#       name: stedi-nodeport-aya-production
+#       port:
+#         number: 80
