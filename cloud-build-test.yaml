@@ -44,7 +44,7 @@ steps:
     args:
       - 'scale'
       - 'deploy'
-      - 'stedi-aya'
+      - 'stedi-aya-test'
       - '--replicas=0'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
@@ -55,7 +55,7 @@ steps:
     args:
       - run
       - --filename=app.yaml
-      - --image=gcr.io/$PROJECT_ID/stedi-aya:$SHORT_SHA
+      - --image=gcr.io/$PROJECT_ID/stedi-aya:latest
       - --location=us-central1-c
       - --cluster=cluster-1
 
@@ -65,7 +65,7 @@ steps:
     args:
       - 'scale'
       - 'deploy'
-      - 'stedi-aya'
+      - 'stedi-aya-test'
       - '--replicas=1'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
