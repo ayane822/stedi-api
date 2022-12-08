@@ -17,9 +17,10 @@ steps:
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
       - run
-      - --filename=app.yaml
+      - --filename=production.yaml
       - --image=gcr.io/$PROJECT_ID/stedi-aya:latest
       - --location=us-central1-c
+      - --output=/tmp/outputprod
       - --cluster=cluster-1
 
   # This step scales up the stedi pod

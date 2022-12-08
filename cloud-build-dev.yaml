@@ -74,7 +74,7 @@ steps:
       # This step deploys the stage application in Kubernetes
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
-     - builds
+      - builds
       - submit
       - --config
       - cloud-build-test.yaml
