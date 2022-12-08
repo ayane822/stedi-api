@@ -138,7 +138,7 @@ spec:
   defaultBackend:
     service:
 # this name must match your node port  same1
-      name: stedi-nodeport-aya-production
+      name: stedi-nodeport-aya-test
       port:
         number: 80
 
